@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Noto Sans Myanmar',sans-serif;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#7a0000,#ff4d6d,#ffffff);
+background-size:400% 400%;
+animation:bgMove 15s ease infinite;
+color:white;
+}
+
+/* cinematic gradient */
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* window shadow effect */
+body::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(90deg,rgba(0,0,0,0.25) 25%,transparent 25%,transparent 75%,rgba(0,0,0,0.25) 75%),
+linear-gradient(0deg,rgba(0,0,0,0.25) 25%,transparent 25%,transparent 75%,rgba(0,0,0,0.25) 75%);
+background-size:200px 200px;
+mix-blend-mode:multiply;
+pointer-events:none;
+animation:windowMove 8s ease-in-out infinite;
+}
+
+@keyframes windowMove{
+0%,100%{transform:translateX(0);}
+50%{transform:translateX(10px);}
+}
+
+/* intro */
+.intro{text-align:center;z-index:2;}
+button{
+margin:10px;
+padding:12px 28px;
+border:none;
+border-radius:25px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+.yes{background:#ff4d6d;color:white;}
+.no{background:white;color:#ff4d6d;}
+button:hover{transform:scale(1.1);}
+.error{margin-top:15px;color:yellow;opacity:0;}
+
+/* main box */
+.container{
+display:none;
+text-align:center;
+backdrop-filter:blur(8px);
+background:rgba(0,0,0,0.25);
+border-radius:20px;
+padding:30px;
+width:90%;
+max-width:420px;
+box-shadow:0 0 40px rgba(0,0,0,0.5);
+animation:fadeIn 2s ease;
+z-index:2;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+img{
+width:220px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(255,255,255,0.3);
+margin-bottom:20px;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+.message{font-size:15px;line-height:1.7;}
+
+/* 🌹 roses floating */
+.rose{
+position:absolute;
+font-size:22px;
+animation:roseFloat 10s linear infinite;
+opacity:0.8;
+}
+
+@keyframes roseFloat{
+from{transform:translateY(110vh) rotate(0deg);}
+to{transform:translateY(-10vh) rotate(360deg);}
+}
+
+/* hearts */
+.heart{
+position:absolute;
+font-size:18px;
+color:#ff4d6d;
+animation:rise 6s linear infinite;
+}
+@keyframes rise{
+from{transform:translateY(100vh);opacity:1;}
+to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<div class="intro" id="intro">
+<h1>Do U love me ? ❤️</h1>
+<button class="yes" onclick="startLove()">Yes</button>
+<button class="no" onclick="showError()">No</button>
+<div class="error" id="error">❌ Error... Wrong answer 😢</div>
+</div>
+
+<!-- Main -->
+<div class="container" id="main">
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...(image shortened)">
+
+<h2>Happy Birthday ❤️</h2>
+
+<div class="message">
+အရမ်းချစ်ရတဲ့ မောင့်ကလေးလေး... <br><br>
+အရင်နှစ်ကထက် တစ်နှစ်ပိုကြီးလာတာနဲ့အမျှ၊  
+မောင်တို့ရဲ့အချစ်တွေ၊ မရဲ့ ကြိုးစားမှုတွေ၊ တိုးတက်မှုတွေ၊  
+ရင့်ကျပ်လာမှုတွေနဲ့ အောင်မြင်မှုတွေကို  
+အရင်နှစ်ကထက် ပိုပြီးကောင်းအောင် လုပ်ဆောင်နိုင်ပါစေ။ <br><br>
+
+မောင်လည်း မအနားမှာ အချိန်တိုင်းရှိနေအောင် ကြိုးစားပေးပါ့မယ်။  
+မောင့်ကလေးလေး လိုချင်တဲ့ ဖုန်းလေးလည်း အမြန်ရပါစေလို့  
+ဆုတောင်းပေးလိုက်ပါတယ်။ <br><br>
+
+ဘုရားသခင် စောင့်ရှောက်ပေးပါစေ။ ❤️
+</div>
+
+</div>
+
+<script>
+function startLove(){
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+}
+
+/* error */
+function showError(){
+const err=document.getElementById("error");
+err.style.opacity=1;
+setTimeout(()=>err.style.opacity=0,2000);
+}
+
+/* hearts */
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(Math.random()*3+4)+"s";
+document.body.
+  appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,700);
+
+/* roses */
+function createRose(){
+const r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=(Math.random()*5+6)+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),10000);
+}
+setInterval(createRose,1500);
+</script>
+
+</body>
+</html>
